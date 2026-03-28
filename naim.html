@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER NAIM | Cyber Security Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --bg-dark: #05050a;
+            --bg-grad: linear-gradient(135deg, #020205 0%, #0a0f1a 100%);
+            --cyan: #00f3ff;
+            --green: #00ff66;
+            --purple: #b500ff;
+            --glass-bg: rgba(10, 15, 26, 0.4);
+            --glass-border: rgba(0, 243, 255, 0.2);
+            --text-main: #e0e6ed;
+        }
+
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-dark);
+            background-image: var(--bg-grad);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- BACKGROUND PARTICLES --- */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-dark) 100%),
+                        url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="1" fill="%2300f3ff" opacity="0.1"/%3E%3C/svg%3E');
+        }
+
+        /* --- REUSABLE COMPONENTS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--cyan);
+            text-shadow: 0 0 10px var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Neon Buttons */
+        .cyber-btn {
+            background: transparent;
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            padding: 10px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .cyber-btn:hover {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--cyan);
+        }
+
+        .cyber-btn.green { border-color: var(--green); color: var(--green); }
+        .cyber-btn.green:hover { background: var(--green); color: #000; box-shadow: 0 0 15px var(--green); }
+
+        /* Inputs */
+        .cyber-input {
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--cyan);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .cyber-input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 10px var(--purple);
+        }
+
+        textarea.cyber-input { resize: vertical; min-height: 80px; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--cyan);
+            box-shadow: 0 0 20px var(--cyan), inset 0 0 20px var(--cyan);
+            margin-bottom: 20px;
+            animation: pulse-border 2s infinite alternate;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 15px var(--cyan); border-color: var(--cyan); }
+            50% { box-shadow: 0 0 30px var(--green); border-color: var(--green); }
+            100% { box-shadow: 0 0 15px var(--purple); border-color: var(--purple); }
+        }
+
+        .hero-name {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--cyan), 0 0 20px var(--purple);
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .typing-container {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--cyan);
+            height: 30px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: var(--cyan);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- GRID LAYOUTS --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- SOCIAL LINKS --- */
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+        }
+        .social-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+        .social-card:nth-child(1) i { color: #1877F2; } /* FB */
+        .social-card:nth-child(2) i { color: #00f3ff; } /* FB Extra */
+        .social-card:nth-child(3) i { color: #fff; }    /* GitHub */
+        .social-card:nth-child(4) i { color: #ff0050; } /* TikTok */
+
+        .social-card:hover i {
+            text-shadow: 0 0 15px currentColor;
+            transform: scale(1.1);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0,0,0,0.8);
+            border-top: 1px solid var(--purple);
+            box-shadow: 0 -5px 15px rgba(181, 0, 255, 0.2);
+            margin-top: 50px;
+        }
+
+        .footer-text {
+            color: var(--cyan);
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 5px var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .dev-link {
+            color: var(--green);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .dev-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--green);
+        }
+
+        /* --- TOOLS SPECIFIC --- */
+        .tool-title {
+            font-size: 1.2rem;
+            color: var(--cyan);
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 5px;
+        }
+        #qrcode { background: #fff; padding: 10px; display: inline-block; border-radius: 5px; margin-top: 10px; }
+        .tool-result { margin-top: 10px; font-family: monospace; color: var(--green); word-break: break-all; }
+
+        @media (max-width: 768px) {
+            .hero-name { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 0.9rem; }
+            .typing-container { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles"></div>
+
+    <section class="hero" id="home">
+        <img src="https://files.catbox.moe/4vp0bp.jpeg" alt="CYBER NAIM" class="profile-pic" onerror="this.src='https://via.placeholder.com/180/000/00f3ff?text=CN'">
+        
+        <h1 class="hero-name">CYBER NAIM</h1>
+        <h3 class="hero-subtitle">Cyber Security Enthusiast | Ethical Hacker | Digital Explorer</h3>
+        
+        <div class="typing-container">
+            <span id="typing-text"></span><span class="cursor">&nbsp;</span>
+        </div>
+    </section>
+
+    <section class="container" id="socials">
+        <h2 class="section-title">Connect Matrix</h2>
+        <div class="grid-container">
+            <a href="https://www.facebook.com/virtual.abbu.nobita1" target="_blank" class="glass-card social-card">
+                <i class="fa-brands fa-facebook"></i>
+                <h3>Main Facebook</h3>
+                <p>FMZ NOBITA 😘😈🪼🩶🪽</p>
+            </a>
+            
+            <a href="https://www.facebook.com/NATOKBAZ.NAIM1" target="_blank" class="glass-card social-card">
+                <i class="fa-solid fa-user-secret"></i>
+                <h3>Facebook Extra</h3>
+                <p>Nahidul Islam Naim</p>
+            </a>
+
+            <a href="https://github.com/ewrnahid" target="_blank" class="glass-card social-card">
+                <i class="fa-brands fa-github"></i>
+                <h3>GitHub</h3>
+                <p>nahidul Islam naim</p>
+            </a>
+
+            <a href="https://www.tiktok.com/@unlucky_man0.1" target="_blank" class="glass-card social-card">
+                <i class="fa-brands fa-tiktok"></i>
+                <h3>TikTok</h3>
+                <p>Nahidul Islam naim</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="container" id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="grid-container" style="grid-template-columns: 1fr; max-width: 600px; margin: 0 auto;">
+            <div class="glass-card" style="text-align: center;">
+                <h3 style="color: var(--purple); font-size: 2rem; margin-bottom: 10px;">Nahidul Project</h3>
+                <p style="margin-bottom: 20px;">An exclusive cyber project developed by CYBER NAIM.</p>
+                <a href="https://github.com/ewrnahid/Nahidul" target="_blank" class="cyber-btn">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="tools">
+        <h2 class="section-title">Hacker Dashboard / Tools</h2>
+        <div class="grid-container">
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-key"></i> Password Generator</h3>
+                <input type="number" id="pass-len" class="cyber-input" value="16" min="4" max="64" placeholder="Length">
+                <button onclick="generatePassword()" class="cyber-btn">Generate</button>
+                <input type="text" id="pass-result" class="cyber-input" readonly style="margin-top:10px;">
+                <button onclick="copyText('pass-result')" class="cyber-btn green">Copy</button>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-qrcode"></i> QR Code Generator</h3>
+                <input type="text" id="qr-text" class="cyber-input" placeholder="Enter Text or URL">
+                <button onclick="generateQR()" class="cyber-btn">Generate QR</button>
+                <div style="text-align: center;"><div id="qrcode"></div></div>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-code"></i> Base64 Tool</h3>
+                <textarea id="base64-input" class="cyber-input" placeholder="Enter text here..."></textarea>
+                <button onclick="encodeBase64()" class="cyber-btn">Encode</button>
+                <button onclick="decodeBase64()" class="cyber-btn green">Decode</button>
+                <textarea id="base64-output" class="cyber-input" readonly style="margin-top:10px;"></textarea>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-file-code"></i> JSON Formatter</h3>
+                <textarea id="json-input" class="cyber-input" placeholder='{"key":"value"}'></textarea>
+                <button onclick="formatJSON()" class="cyber-btn">Format / Beautify</button>
+                <textarea id="json-output" class="cyber-input" readonly style="margin-top:10px;"></textarea>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-calculator"></i> Text Counter</h3>
+                <textarea id="word-input" class="cyber-input" oninput="countText()" placeholder="Type something..."></textarea>
+                <div class="tool-result">
+                    Words: <span id="w-count">0</span> | Chars: <span id="c-count">0</span><br>
+                    Read Time: <span id="r-time">0</span> min
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-hashtag"></i> Num Converter</h3>
+                <input type="text" id="num-input" class="cyber-input" placeholder="Enter Number">
+                <select id="num-from" class="cyber-input" style="width:48%; display:inline-block;">
+                    <option value="10">Decimal</option><option value="2">Binary</option>
+                    <option value="16">Hex</option><option value="8">Octal</option>
+                </select>
+                <select id="num-to" class="cyber-input" style="width:48%; display:inline-block; float:right;">
+                    <option value="2">Binary</option><option value="10">Decimal</option>
+                    <option value="16">Hex</option><option value="8">Octal</option>
+                </select>
+                <button onclick="convertNumber()" class="cyber-btn" style="width:100%;">Convert</button>
+                <input type="text" id="num-result" class="cyber-input" readonly style="margin-top:10px;">
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-fingerprint"></i> UUID Generator</h3>
+                <input type="text" id="uuid-result" class="cyber-input" readonly>
+                <button onclick="generateUUID()" class="cyber-btn">Generate ID</button>
+                <button onclick="copyText('uuid-result')" class="cyber-btn green">Copy</button>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-font"></i> Case Converter</h3>
+                <input type="text" id="case-input" class="cyber-input" placeholder="Type text...">
+                <div style="display:flex; gap:5px; flex-wrap:wrap;">
+                    <button onclick="convertCase('upper')" class="cyber-btn">UPPER</button>
+                    <button onclick="convertCase('lower')" class="cyber-btn">lower</button>
+                    <button onclick="convertCase('camel')" class="cyber-btn">camelCase</button>
+                    <button onclick="convertCase('snake')" class="cyber-btn">snake_case</button>
+                </div>
+                <input type="text" id="case-result" class="cyber-input" readonly style="margin-top:10px;">
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-vial"></i> Regex Tester</h3>
+                <input type="text" id="regex-pattern" class="cyber-input" placeholder="Pattern (e.g. [a-z]+)">
+                <input type="text" id="regex-text" class="cyber-input" placeholder="Test String">
+                <button onclick="testRegex()" class="cyber-btn">Test</button>
+                <div id="regex-result" class="tool-result">Result will appear here...</div>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="tool-title"><i class="fa-solid fa-network-wired"></i> IP Info Lookup</h3>
+                <button onclick="getIPInfo()" class="cyber-btn">Trace My IP</button>
+                <div id="ip-result" class="tool-result" style="white-space: pre-wrap; font-size: 0.85rem;"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <h3 class="footer-text">© 2026 CYBER NAIM | All Rights Reserved</h3>
+        <p>Developer: <a href="https://www.facebook.com/virtual.abbu.nobita1" target="_blank" class="dev-link">Nahidul Islam Naim / Cyber Naim</a></p>
+    </footer>
+
+    <script>
+        // --- TYPING ANIMATION ---
+        const typingText = document.getElementById('typing-text');
+        const phrases = [
+            "Securing the Digital World, One Line of Code at a Time",
+            "Think Smart. Hack Ethical.",
+            "In Code We Trust, In Security We Rise",
+            "Cyber Mind. Digital Power.",
+            "Hack the System, Not the Ethics"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.innerText = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.innerText = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500; // Pause before new word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        document.addEventListener("DOMContentLoaded", type);
+
+        // --- GLOBAL COPY FUNCTION ---
+        function copyText(elementId) {
+            const el = document.getElementById(elementId);
+            el.select();
+            document.execCommand('copy');
+            alert("Copied to clipboard!");
+        }
+
+        // --- 1. PASSWORD GENERATOR ---
+        function generatePassword() {
+            const length = document.getElementById('pass-len').value;
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+            let retVal = "";
+            for (let i = 0, n = charset.length; i < length; ++i) {
+                retVal += charset.charAt(Math.floor(Math.random() * n));
+            }
+            document.getElementById('pass-result').value = retVal;
+        }
+
+// --- 2. QR CODE GENERATOR ---
+        let qrcode = null;
+        function generateQR() {
+            const text = document.getElementById('qr-text').value;
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = "";
+            if(!text) return alert("Enter some text or URL");
+            qrcode = new QRCode(qrContainer, {
+                text: text,
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+
+        // --- 3. BASE64 ENCODER/DECODER ---
+        function encodeBase64() {
+            const input = document.getElementById('base64-input').value;
+            document.getElementById('base64-output').value = btoa(input);
+        }
+        function decodeBase64() {
+            const input = document.getElementById('base64-input').value;
+            try {
+                document.getElementById('base64-output').value = atob(input);
+            } catch(e) {
+                document.getElementById('base64-output').value = "Error: Invalid Base64 string.";
+            }
+        }
+
+        // --- 4. JSON FORMATTER ---
+        function formatJSON() {
+            const input = document.getElementById('json-input').value;
+            const output = document.getElementById('json-output');
+            try {
+                const parsed = JSON.parse(input);
+                output.value = JSON.stringify(parsed, null, 4);
+                output.style.color = "var(--green)";
+            } catch (e) {
+                output.value = "Error: Invalid JSON format.\n\n" + e.message;
+                output.style.color = "red";
+            }
+        }
+
+        // --- 5. WORD & CHAR COUNTER ---
+        function countText() {
+            const text = document.getElementById('word-input').value;
+            const chars = text.length;
+            const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+            const readTime = Math.ceil(words / 200); // Avg 200 words per min
+
+            document.getElementById('c-count').innerText = chars;
+            document.getElementById('w-count').innerText = words;
+            document.getElementById('r-time').innerText = readTime;
+        }
+
+        // --- 6. NUMBER SYSTEM CONVERTER ---
+        function convertNumber() {
+            const val = document.getElementById('num-input').value;
+            const fromBase = parseInt(document.getElementById('num-from').value);
+            const toBase = parseInt(document.getElementById('num-to').value);
+            const resultBox = document.getElementById('num-result');
+            
+            if(!val) return resultBox.value = "";
+            
+            const decimal = parseInt(val, fromBase);
+            if(isNaN(decimal)) {
+                resultBox.value = "Invalid Number for selected base";
+            } else {
+                resultBox.value = decimal.toString(toBase).toUpperCase();
+            }
+        }
+
+        // --- 7. UUID GENERATOR ---
+        function generateUUID() {
+            let uuid;
+            if (crypto && crypto.randomUUID) {
+                uuid = crypto.randomUUID();
+            } else {
+                // Fallback for older browsers
+                uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+            document.getElementById('uuid-result').value = uuid;
+        }
+
+        // --- 8. CASE CONVERTER ---
+        function convertCase(type) {
+            let text = document.getElementById('case-input').value;
+            let result = "";
+            if(type === 'upper') result = text.toUpperCase();
+            else if(type === 'lower') result = text.toLowerCase();
+            else if(type === 'camel') {
+                result = text.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+                    if (+match === 0) return ""; 
+                    return index === 0 ? match.toLowerCase() : match.toUpperCase();
+                });
+            }
+            else if(type === 'snake') {
+                result = text.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+                         .map(x => x.toLowerCase()).join('_');
+            }
+            document.getElementById('case-result').value = result;
+        }
+
+        // --- 9. REGEX TESTER ---
+        function testRegex() {
+            const pattern = document.getElementById('regex-pattern').value;
+            const text = document.getElementById('regex-text').value;
+            const resultBox = document.getElementById('regex-result');
+            
+            try {
+                const regex = new RegExp(pattern, 'g');
+                const matches = text.match(regex);
+                if(matches) {
+                    resultBox.innerHTML = `Found ${matches.length} match(es):<br>` + matches.join(', ');
+                    resultBox.style.color = "var(--green)";
+                } else {
+                    resultBox.innerHTML = "No matches found.";
+                    resultBox.style.color = "red";
+                }
+            } catch(e) {
+                resultBox.innerHTML = "Invalid Regex Pattern";
+                resultBox.style.color = "red";
+            }
+        }
+
+        // --- 10. IP INFO LOOKUP ---
+        async function getIPInfo() {
+            const resultBox = document.getElementById('ip-result');
+            resultBox.innerText = "Tracing IP...\n[||||||||||        ]";
+            try {
+                // Note: using ipapi.co as it supports HTTPS which is safer for GitHub pages
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                
+                if(data.error) throw new Error("API Error");
+
+                resultBox.innerHTML = `
+IP Address: <span style="color:#fff">${data.ip}</span>
+Country: <span style="color:#fff">${data.country_name}</span>
+City: <span style="color:#fff">${data.city}</span>
+ISP: <span style="color:#fff">${data.org}</span>
+Lat/Lon: <span style="color:#fff">${data.latitude}, ${data.longitude}</span>
+                `;
+            } catch (error) {
+                resultBox.innerText = "Error fetching IP Info. (Check adblocker or try again)";
+            }
+        }
+
+        // Initialize UUID on load
+        generateUUID();
+    </script>
+</body>
+</html>
